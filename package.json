@@ -1,0 +1,32 @@
+{
+  "name": "Memory-Game",
+  "version": "1.0.0",
+  "description": "A good old memory game",
+  "main": "main.js",
+  "scripts": {
+    "prestart": "gulp",
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "memory",
+    "game"
+  ],
+  "author": "Emil",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "electron": "^1.4.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.0"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "markdown-it": "^8.2.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}

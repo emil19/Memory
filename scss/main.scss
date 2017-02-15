@@ -1,0 +1,123 @@
+$white: #fefefe;
+$gray: #888888;
+$black: #0a0a0a;
+
+// Firenze tema
+// $accent: #468966;
+// $light: #FFF0A5;
+// $mediumLight: #FFB03B;
+// $mediumDark: #B64926;
+// $dark: #8E2800;
+
+// Harbor tema
+// $accent: #59D8E5;
+// $light: #D5FBFF;
+// $mediumLight: #9FBCBF;
+// $mediumDark: #647678;
+// $dark: #2F3738;
+
+// Aspirin tema
+$accent: #EB7F00;
+$light: #F3FFE2;
+$mediumLight: #ACF0F2;
+$mediumDark: #1695A3;
+$dark: #225378;
+
+@import '_start.scss';
+@import '_game.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+*{
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+body{
+  background-color: $light;
+  margin: 0;
+}
+
+.button{
+  display: inline-block;
+  background-color: $accent;
+  padding: 1rem;
+  color: $white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+
+  &:hover{
+    background-color: darken($accent, 3);
+  }
+  &:active{
+    background-color: darken($accent, 6);
+  }
+  &.extended{
+    display: block;
+    margin-bottom: 1rem;
+  }
+  &.secondary{
+    background-color: $dark;
+    &:hover{
+      background-color: darken($dark, 3);
+    }
+    &:active{
+      background-color: darken($dark, 6);
+    }
+  }
+}
+
+input, select{
+  padding: 0.5rem;
+  width: 12rem;
+  background-color: $white;
+  border: $gray 1px solid;
+  outline: none;
+
+  &:focus{
+    border-color: $accent;
+  }
+}
+
+label{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+
+  & > *{
+    display: block;
+  }
+
+  span{
+    flex-grow: 1;
+    color: $black;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    width: 1em;
+    height: 1em;
+    margin: 3px;
+    background-color: $white;
+    border-radius: 100%;
+    animation: loader 1.4s infinite ease-in-out both;
+  }
+
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+@keyframes loader {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+  }
+}

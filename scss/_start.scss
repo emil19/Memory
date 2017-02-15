@@ -1,0 +1,20 @@
+.menuContainer{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.title{
+  background-color: $dark;
+  color: $white;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  padding: 2rem 0;
+  border-bottom: $accent .5rem solid;
+}
+
+.container{
+  width: 24rem;
+  margin: 0 1rem;
+}
