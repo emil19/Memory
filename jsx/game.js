@@ -6,6 +6,8 @@ var Player = require('./player');
 module.exports = class Game {
   constructor(playerCount, cardCount, images) {
 
+    this.busy = false;
+
     this.players = [];
     for (var i = 0; i < playerCount; i++) {
       this.players.push(new Player(i, "Player " + (i+1)));
@@ -34,18 +36,33 @@ module.exports = class Game {
     console.log(lastPlayer);
     console.log(this.players.length);
     console.log(nextPlayer);
+    this.currentTurn.end();
+    this.currentTurn = new Turn(this.players[nextPlayer]);
+    console.log(this.currentTurn);
+  }
 
-    setTimeout(() => {
-      this.currentTurn.end();
-      this.currentTurn = new Turn(this.players[nextPlayer]);
-      console.log(this.currentTurn);
-    }, 2000)
+  setBusy(busy){
+    console.log(this);
+    this.busy = busy;
+  }
+
+  validClick(card){
+    if (card.flipped)
+      return false;
+
+    if (this.busy)
+      return false;
+
+    return true;
   }
 
   click(card, callback) {
-    var clickResponse = this.currentTurn.go(card, callback);
-    if (clickResponse.nextPlayer)
+    if (this.validClick(card)) {
+      var clickResponse = this.currentTurn.go(card, callback, this.setBusy.bind(this));
+      if (clickResponse.nextPlayer)
       this.nextTurn();
-    return clickResponse;
+      return clickResponse;
+    }
+    return false;
   }
 }

@@ -3,52 +3,47 @@ module.exports = class Turn {
     player.current = true;
     this.player = player;
     this.selectedCards = [];
-    this.busy = false;
   }
-  go(card, callback){
+  go(card, callback, setBusy){
     var done = false,
     nextPlayer = false,
-    turnedCard = false,
     turnBack = false,
     pairId = false;
 
-    if (this.validClick(card)) {
-      turnedCard = true;
-      this.selectedCards.push(card);
+    this.selectedCards.push(card);
 
-      if (this.selectedCards.length === 2) {
-        this.busy = true;
+    if (this.selectedCards.length === 2) {
+      setBusy(true);
 
-        // kolla om det är ett par
-        if (this.isPair()) {
-          done = true;
-          nextPlayer = false;
-          pairId = card.id;
-          this.player.givePair({
-            id: card.id,
-            image: card.image
-          });
+      // kolla om det är ett par
+      if (this.isPair()) {
+        done = true;
+        nextPlayer = false;
+        pairId = card.id;
+        this.player.givePair({
+          id: card.id,
+          image: card.image
+        });
+        setBusy(false);
 
-          this.busy = false;
-        } else {
-          done = true;
-          nextPlayer = true;
-          turnBack = this.selectedCards.map((selectedCard) => {
-            return selectedCard.uid;
-          });
-        }
-
-        this.selectedCards = []; // ta bort valda kort
+      } else {
+        done = true;
+        nextPlayer = true;
+        turnBack = this.selectedCards.map((selectedCard) => {
+          return selectedCard.uid;
+        });
       }
-      setTimeout(() => {
-        if (turnBack) this.busy = false;
-        callback({turnBack});
-      },
-        2000
-      );
-    }
 
-    return {done, nextPlayer, turnedCard, pairId};
+      this.selectedCards = []; // ta bort valda kort
+    }
+    setTimeout(() => {
+      if (turnBack) setBusy(false);
+      callback({turnBack});
+    },
+      2000
+    );
+
+    return {done, nextPlayer, pairId};
   }
 
   end(){
@@ -60,15 +55,5 @@ module.exports = class Turn {
       return true;
     }
     return false;
-  }
-
-  validClick(card){
-    if (card.flipped)
-      return false;
-
-    if (this.busy)
-      return false;
-
-    return true;
   }
 }

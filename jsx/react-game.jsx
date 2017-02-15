@@ -86,12 +86,13 @@ class Game extends React.Component {
         });
       }
     });
-    if (clickResponse.turnedCard) {
+    if (clickResponse) {
       this.flipCard(card.uid, true);
-    }
-    if (clickResponse.pairId) {
+      
+      if (clickResponse.pairId) {
 
-      this.setState({players: this.generateHtmlPlayers()});
+        this.setState({players: this.generateHtmlPlayers()});
+      }
     }
   }
 
