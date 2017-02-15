@@ -1,4 +1,3 @@
-# Information
 
 Detta är ett memoryspel skapat av Emil Nilsson, det hämtar bilder på nätet för att ha på korten, man kan använda egna söktermer för att välja bilder.
 

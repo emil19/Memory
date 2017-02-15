@@ -1,1 +1,1 @@
-# How To Play
+Press start game and click on some cards.

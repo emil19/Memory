@@ -30,9 +30,13 @@ class MainMenu extends React.Component {
     )
 
     return(
-      <div className="menuContainer">
-        <h1 className="title">Memory Game</h1>
-        <div className="container">
+      <div className="pageContainer">
+        <h1 className="title">
+          <span>
+            Memory Game
+          </span>
+        </h1>
+        <div className="container-24">
           <label>
             <span>Amount of players:</span>
             <Input
@@ -66,14 +70,35 @@ class MainMenu extends React.Component {
           <a
             href="#"
             className="button secondary extended"
-            onClick={this.props.markdownPage.bind(null, './md/howto.md')} >
+            onClick={this.props.markdownPage.bind(
+              null,
+              './md/howto.md',
+              "How To Play"
+            )}
+          >
             How To Play
           </a>
           <a
             href="#"
             className="button secondary extended"
-            onClick={this.props.markdownPage.bind(null, './md/info.md')} >
+            onClick={this.props.markdownPage.bind(
+              null,
+              './md/info.md',
+              "Information"
+            )}
+          >
             Information
+          </a>
+          <a
+            href="#"
+            className="button secondary extended"
+            onClick={this.props.markdownPage.bind(
+              null,
+              './md/todo.md',
+              "To Do"
+            )}
+          >
+            To Do
           </a>
         </div>
       </div>

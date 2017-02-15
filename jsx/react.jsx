@@ -12,6 +12,7 @@ class MainComponent extends React.Component {
 
     this.startGame = this.startGame.bind(this);
     this.markdownPage = this.markdownPage.bind(this);
+    this.mainMenu = this.mainMenu.bind(this);
 
     this.state = {
       gameState: 'menu'
@@ -27,10 +28,22 @@ class MainComponent extends React.Component {
       );
 
     if (this.state.gameState === 'game')
-      return(<Game options={this.gameOptions} startGame={this.startGame}/>);
+      return(
+        <Game
+          options={this.gameOptions}
+          startGame={this.startGame}
+          back={this.mainMenu}
+        />
+      );
 
     if (this.state.gameState === 'markdownPage')
-      return(<MarkdownPage filePath={this.markdownPath} />);
+      return(
+        <MarkdownPage
+          filePath={this.markdownPath}
+          back={this.mainMenu}
+          title={this.markdownTitle}
+        />
+      );
   }
 
   startGame(options){
@@ -40,10 +53,17 @@ class MainComponent extends React.Component {
     })
   }
 
-  markdownPage(path){
+  markdownPage(path, title){
     this.markdownPath = path;
+    this.markdownTitle = title;
     this.setState({
       gameState: 'markdownPage'
+    });
+  }
+
+  mainMenu(){
+    this.setState({
+      gameState: 'menu'
     });
   }
 }

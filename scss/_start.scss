@@ -1,20 +1,30 @@
-.menuContainer{
+.pageContainer{
   display: flex;
   flex-flow: column wrap;
   align-items: center;
 }
 
 .title{
+  align-items: center;
+  display: flex;
   background-color: $dark;
   color: $white;
   width: 100%;
   text-align: center;
   margin: 0 0 2rem 0;
-  padding: 2rem 0;
+  padding: 2rem;
   border-bottom: $accent .5rem solid;
+
+  span {
+    flex-grow: 1;
+  }
 }
 
-.container{
+.container-24{
   width: 24rem;
+  margin: 0 1rem;
+}
+.container-40{
+  width: 40rem;
   margin: 0 1rem;
 }

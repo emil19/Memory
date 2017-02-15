@@ -33,16 +33,11 @@ module.exports = class Game {
     var nextPlayer = 0;
     if (lastPlayer < this.players.length - 1)
       nextPlayer = lastPlayer + 1;
-    console.log(lastPlayer);
-    console.log(this.players.length);
-    console.log(nextPlayer);
     this.currentTurn.end();
     this.currentTurn = new Turn(this.players[nextPlayer]);
-    console.log(this.currentTurn);
   }
 
   setBusy(busy){
-    console.log(this);
     this.busy = busy;
   }
 

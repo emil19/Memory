@@ -1,13 +1,9 @@
 var React = require('react');
 var Card = require('./react-card');
 var Player = require('./react-player');
+var BackButton = require('./react-backButton');
 
-var Lib = {
-  Game: require('./game'),
-  Card: require('./card'),
-  Cards: require('./cards'),
-  Turn: require('./cards'),
-}
+var GameLib = require('./game');
 
 // räknar ut vilket höjd och bredd layouten ska ha
 function calcGridSize(num){
@@ -34,7 +30,7 @@ class Game extends React.Component {
     this.generateHtmlPlayers = this.generateHtmlPlayers.bind(this);
 
     this.gridSize = calcGridSize(this.props.options.cards);
-    this.game = new Lib.Game(
+    this.game = new GameLib(
       this.props.options.players,
       this.props.options.cards,
       this.props.options.images
@@ -51,7 +47,10 @@ class Game extends React.Component {
       <div className="gameContainer">
         <div className="gameMenuContainer">
           <h1 className="title">
-            Game
+            <BackButton to={this.props.back} />
+            <span>
+              Game
+            </span>
           </h1>
           { this.state.players }
         </div>
@@ -88,7 +87,7 @@ class Game extends React.Component {
     });
     if (clickResponse) {
       this.flipCard(card.uid, true);
-      
+
       if (clickResponse.pairId) {
 
         this.setState({players: this.generateHtmlPlayers()});
