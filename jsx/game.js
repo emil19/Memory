@@ -9,18 +9,18 @@ module.exports = class Game {
     this.busy = false;
 
     this.players = [];
-    for (var i = 0; i < playerCount; i++) {
+    for (let i = 0; i < playerCount; i++) {
       this.players.push(new Player(i, "Player " + (i+1)));
     }
 
     this.cards = new Cards();
 
-    for (var i = 0; i < cardCount/2; i++) {
-      for (var n = 0; n < 2; n++) {
+    for (let i = 0; i < cardCount/2; i++) {
+      for (let n = 0; n < 2; n++) {
         this.cards.add(new Card(i*2+n, i, images[i]));
       }
     }
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       this.cards.shuffle();
     }
 
@@ -60,4 +60,4 @@ module.exports = class Game {
     }
     return false;
   }
-}
+};

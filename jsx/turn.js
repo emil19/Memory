@@ -56,4 +56,4 @@ module.exports = class Turn {
     }
     return false;
   }
-}
+};

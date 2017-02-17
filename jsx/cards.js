@@ -7,7 +7,7 @@ module.exports = class Cards {
   }
   shuffle(){
     this.cards.sort(()=>{
-      return .5 - Math.random();
+      return 0.5 - Math.random();
     });
   }
-}
+};

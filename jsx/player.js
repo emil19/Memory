@@ -7,4 +7,4 @@ module.exports = class Player {
   givePair(id){
     this.pairs.push(id);
   }
-}
+};
