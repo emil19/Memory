@@ -5,27 +5,31 @@ var Player = require('./player');
 
 module.exports = class Game {
   constructor(playerCount, cardCount, images) {
-
     this.busy = false;
 
     this.players = [];
+    this.addPlayers(playerCount);
+
+    this.cards = new Cards();
+    this.generateCards(cardCount, images);
+    this.cards.shuffle(3);
+
+    this.currentTurn = new Turn(this.players[0]);
+    //this.previousTurns = [];
+  }
+
+  addPlayers(playerCount) {
     for (let i = 0; i < playerCount; i++) {
       this.players.push(new Player(i, "Player " + (i+1)));
     }
+  }
 
-    this.cards = new Cards();
-
+  generateCards(cardCount, images) {
     for (let i = 0; i < cardCount/2; i++) {
       for (let n = 0; n < 2; n++) {
         this.cards.add(new Card(i*2+n, i, images[i]));
       }
     }
-    for (let i = 0; i < 3; i++) {
-      this.cards.shuffle();
-    }
-
-    this.currentTurn = new Turn(this.players[0]);
-    //this.previousTurns = [];
   }
 
   nextTurn() {
