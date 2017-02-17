@@ -5,55 +5,64 @@ module.exports = class Turn {
     this.selectedCards = [];
   }
   go(card, callback, setBusy){
-    var done = false,
-    nextPlayer = false,
-    turnBack = false,
-    pairId = false;
+    var state = {
+      done: false,
+      nextPlayer: false,
+      turnBack: false,
+      pairId: false
+    };
 
     this.selectedCards.push(card);
 
     if (this.selectedCards.length === 2) {
-      setBusy(true);
-
-      // kolla om det är ett par
-      if (this.isPair()) {
-        done = true;
-        nextPlayer = false;
-        pairId = card.id;
-        this.player.givePair({
-          id: card.id,
-          image: card.image
-        });
-        setBusy(false);
-
-      } else {
-        done = true;
-        nextPlayer = true;
-        turnBack = this.selectedCards.map((selectedCard) => {
-          return selectedCard.uid;
-        });
-      }
-
-      this.selectedCards = []; // ta bort valda kort
+      this.checkPair(state, setBusy);
     }
     setTimeout(() => {
-      if (turnBack) setBusy(false);
-      callback({turnBack});
+      if (state.turnBack) setBusy(false);
+      callback({turnBack: state.turnBack});
     },
       2000
     );
 
-    return {done, nextPlayer, pairId};
+    return state;
   }
 
-  end(){
+  checkPair(state, setBusy) {
+    setBusy(true);
+    state.done = true;
+
+    // kolla om det är ett par
+    if (this.isPair()) {
+      this.givePair(state, setBusy);
+    } else {
+      this.turnBack(state);
+    }
+
+    this.selectedCards = []; // ta bort valda kort
+  }
+
+  turnBack(state) {
+    state.nextPlayer = true;
+    state.turnBack = this.selectedCards.map((selectedCard) => {
+      return selectedCard.uid;
+    });
+  }
+
+  givePair(state, setBusy) {
+    state.nextPlayer = false;
+    state.pairId = this.selectedCards[0].id;
+    this.player.givePair({
+      id: this.selectedCards[0].id,
+      image: this.selectedCards[0].image
+    });
+    setBusy(false);
+  }
+
+  end() {
     this.player.current = false;
   }
 
-  isPair(){
-    if (this.selectedCards[0].id === this.selectedCards[1].id){
-      return true;
-    }
-    return false;
+  isPair() {
+    return this.selectedCards[0].id === this.selectedCards[1].id;
   }
 };

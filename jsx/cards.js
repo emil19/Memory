@@ -5,9 +5,12 @@ module.exports = class Cards {
   add(card){
     this.cards.push(card);
   }
-  shuffle(){
-    this.cards.sort(()=>{
-      return 0.5 - Math.random();
-    });
+  shuffle(times){
+    times = times || 1;
+    for (let i = 0; i < times; i++) {
+      this.cards.sort(sort);
+    }
   }
 };
+
+let sort = () => 0.5 - Math.random();
