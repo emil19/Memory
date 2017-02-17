@@ -132,7 +132,7 @@ class MainMenu extends React.Component {
       }
     })
     .then(function(response) {
-      console.log(response.data.photos);
+      console.log(response);
 
       var urlArray = response.data.photos.photo.map((p)=>{
         return(
