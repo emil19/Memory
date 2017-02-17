@@ -5,4 +5,4 @@ module.exports = class Card {
     this.image = image;
     this.flipped = false;
   }
-}
+};
