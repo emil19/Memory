@@ -1,5 +1,6 @@
 var React = require('react');
-var axios = require('axios');
+
+var FlickrRequest = new (require('./request'));
 
 var Markdown = require('./react-markdown');
 var Select = require('./react-select');
@@ -104,6 +105,7 @@ class MainMenu extends React.Component {
       </div>
     )
   }
+
   stateSetter(value, state){
     var tempObject = {};
     tempObject[state] = value;
@@ -111,51 +113,22 @@ class MainMenu extends React.Component {
   }
 
   startGame(){
-    this.setState({
-      loading: true
-    });
-
-    var method = this.state.search === "" ?
-      'flickr.interestingness.getList' : 'flickr.photos.search';
-
-    var that = this;
-    axios.get('https://api.flickr.com/services/rest/',{
-      params: {
-        method: method,
-        format: 'json',
-        nojsoncallback: '1',
-        api_key: '182c38c67c13de0148a5f1b7d6240ed9',
-        content_type: 1,
-        sort: 'relevance',
-        text: that.state.search,
-        per_page: this.state.cards/2,
-      }
+    this.stateSetter(true, 'loading');
+    FlickrRequest.send({
+      search: this.state.search,
+      count: this.state.cards/2
     })
-    .then(function(response) {
-      console.log(response);
+    .then((res) => {
+      this.stateSetter(false, 'loading');
 
-      var urlArray = response.data.photos.photo.map((p)=>{
-        return(
-          `https://farm${p.farm}.staticflickr.com/${p.server}/${p.id}_${p.secret}.jpg`
-        );
-      });
-
-      that.setState({
-        loading: false
-      });
-
-      that.props.startGame({
-        images: urlArray,
-        players: that.state.players,
-        cards: that.state.cards
+      this.props.startGame({
+        images: res,
+        players: this.state.players,
+        cards: this.state.cards
       });
     })
-    .catch(function(error){
-      console.log(error);
-
-      that.setState({
-        loading: false
-      });
+    .catch((error) => {
+      this.stateSetter(false, 'loading');
     });
   }
 }
