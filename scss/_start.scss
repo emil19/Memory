@@ -8,7 +8,6 @@
   align-items: center;
   display: flex;
   background-color: $dark;
-  color: $white;
   width: 100%;
   text-align: center;
   margin: 0 0 2rem 0;
@@ -17,14 +16,83 @@
 
   span {
     flex-grow: 1;
+    color: $white;
   }
 }
 
-.container-24{
+.container-24 {
   width: 24rem;
   margin: 0 1rem;
 }
-.container-40{
+.container-40 {
   width: 40rem;
   margin: 0 1rem;
+}
+
+.errorList {
+  display: block;
+
+  .error {
+    background-color: $alert;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    animation: shake .6s cubic-bezier(.36,.07,.19,.97) both;
+    display: flex;
+    overflow: hidden;
+
+    .text {
+      flex-grow: 1;
+      color: $white;
+    }
+    .close {
+      flex-grow: 0;
+      cursor: pointer;
+      color: $white;
+
+      &:hover {
+        color: darken($white, 6);
+      }
+    }
+  }
+
+  .error-enter, .error-leave.error-leave-active {
+    height: 0;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .error-enter.error-enter-active {
+    height: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transition: all .2s ease-in;
+  }
+
+  .error-leave {
+    height: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    &.error-leave-active {
+      transition: all .2s ease-in;
+    }
+  }
+}
+
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate(-2px, 0);
+  }
+
+  20%, 80% {
+    transform: translate(5px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate(-8px, 0);
+  }
+
+  40%, 60% {
+    transform: translate(8px, 0);
+  }
 }

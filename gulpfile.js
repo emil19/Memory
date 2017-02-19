@@ -25,7 +25,7 @@ gulp.task("babel", function () {
   return gulp.src("jsx/**/*.{js,jsx}")
     .pipe(sourcemaps.init())
     .pipe(babel({
-      presets: ['react', 'latest'],
+      presets: ['react'],
     }))
     .pipe(sourcemaps.write(".", { includeContent: true, debug: true }))
     .pipe(gulp.dest("./js"));

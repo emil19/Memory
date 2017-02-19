@@ -2,9 +2,9 @@ var React = require('react');
 
 var FlickrRequest = new (require('./request'));
 
-var Markdown = require('./react-markdown');
 var Select = require('./react-select');
 var Input = require('./react-input');
+var ErrorList = require('./react-errorList');
 
 class MainMenu extends React.Component {
   constructor(props){
@@ -12,15 +12,19 @@ class MainMenu extends React.Component {
 
     this.stateSetter = this.stateSetter.bind(this);
     this.startGame = this.startGame.bind(this);
+    this.addError = this.addError.bind(this);
+    this.removeError = this.removeError.bind(this);
 
     this.memorySizes = [16, 24, 36, 48, 64, 80, 100, 144, 196, 256];
     this.state = {
       players: 2,
       cards: 16,
       search: '',
-      loading: false
-    }
+      loading: false,
+      errors: []
+    };
   }
+
   render(){
     var loader = (
       <div className="loader">
@@ -28,7 +32,7 @@ class MainMenu extends React.Component {
         <div className="bounce2" />
         <div />
       </div>
-    )
+    );
 
     return(
       <div className="pageContainer">
@@ -38,6 +42,10 @@ class MainMenu extends React.Component {
           </span>
         </h1>
         <div className="container-24">
+          <ErrorList
+            errors={this.state.errors}
+            removeError={this.removeError}
+          />
           <label>
             <span>Amount of players:</span>
             <Input
@@ -103,7 +111,7 @@ class MainMenu extends React.Component {
           </a>
         </div>
       </div>
-    )
+    );
   }
 
   stateSetter(value, state){
@@ -129,8 +137,27 @@ class MainMenu extends React.Component {
     })
     .catch((error) => {
       this.stateSetter(false, 'loading');
+      this.addError(error);
     });
   }
+
+  addError(options) {
+    this.setState((prevState) => {
+      let errors = prevState.errors.slice(0);
+      errors.push(options);
+      return {errors};
+    });
+  }
+  removeError(id) {
+    let errors = this.state.errors.slice(0);
+    errors.splice(id, 1);
+    this.setState({errors});
+  }
 }
+
+MainMenu.propTypes = {
+  markdownPage: React.PropTypes.func.isRequired,
+  startGame: React.PropTypes.func.isRequired
+};
 
 module.exports = MainMenu;

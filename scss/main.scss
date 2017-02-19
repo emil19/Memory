@@ -1,7 +1,7 @@
 $white: #fefefe;
 $gray: #888888;
 $black: #0a0a0a;
-
+$alert: #ee0022;
 // Firenze tema
 // $accent: #468966;
 // $light: #FFF0A5;
@@ -23,14 +23,17 @@ $mediumLight: #ACF0F2;
 $mediumDark: #1695A3;
 $dark: #225378;
 
+*{
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  color: $black;
+}
+
 @import '_start.scss';
 @import '_game.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
-*{
-  font-family: 'Open Sans', sans-serif;
-  box-sizing: border-box;
-}
+
 body{
   background-color: $light;
   margin: 0;
