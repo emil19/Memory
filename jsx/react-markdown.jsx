@@ -1,16 +1,18 @@
 var React = require('react');
 var MarkdownIt = require('markdown-it')();
-var path = require('path');
 var fs = require('fs'); // Inbyggd node library för att läsa i filsystemet
 
 class Markdown extends React.Component {
   constructor(props){
     super(props);
+
+    // sätter texten till tom innan den hinner läsa in filen
     this.state = {
       text: ''
-    }
+    };
   }
   componentWillMount(){
+    // läser in filen async om uppdaterar state när den är klar
     fs.readFile(
       this.props.filePath,
       'utf-8',
@@ -21,6 +23,7 @@ class Markdown extends React.Component {
     );
   }
   render () {
+    // kompilerar markdown till html med markdown-it
     return (
       <div
         dangerouslySetInnerHTML={
@@ -30,5 +33,9 @@ class Markdown extends React.Component {
     );
   }
 }
+
+Markdown.propTypes = {
+  filePath: React.PropTypes.string.isRequired
+};
 
 module.exports = Markdown;

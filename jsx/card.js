@@ -1,3 +1,4 @@
+// kortets information
 module.exports = class Card {
   constructor(uid, id, image) {
     this.uid = uid;

@@ -1,7 +1,10 @@
 var React = require('react');
 
+// den lilla bilden som visas på alla av nuvarande spelarens par
 class PairThumbnail extends React.Component {
   render(){
+    // räknar vart i sin förälder kortet ska ligga så de sprider ut sig jämnt
+    // och visas över varandra om det blir fullt.
     var percent;
     var pxOffset;
 
@@ -9,9 +12,9 @@ class PairThumbnail extends React.Component {
       percent = 50;
       pxOffset = 30;
     } else {
-      var percentIncrements = 100 / (this.props.count-1);
+      var percentIncrements = 100 / (this.props.count - 1);
       percent = percentIncrements * this.props.index;
-      pxOffset = .6 * percent;
+      pxOffset = 0.6 * percent;
     }
 
     return(
@@ -25,5 +28,11 @@ class PairThumbnail extends React.Component {
     );
   }
 }
+
+PairThumbnail.propTypes = {
+  count: React.PropTypes.number.isRequired,
+  img: React.PropTypes.string.isRequired,
+  index: React.PropTypes.number.isRequired
+};
 
 module.exports = PairThumbnail;

@@ -6,7 +6,7 @@ class Card extends React.Component {
 
     this.onClick = this.onClick.bind(this);
 
-    // Bilden på baksidan av korten.
+    // Bilden på baksidan av korten i svg vektorformat.
     this.cardBack = (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <rect width="512" height="512" />
@@ -15,6 +15,7 @@ class Card extends React.Component {
     );
   }
   render(){
+    // skapar kortets html och sätter storlek och bilder
     return(
       <div
         className="flip"
@@ -25,6 +26,7 @@ class Card extends React.Component {
           margin: (5/this.props.gridSize.x) + '%'
         }}
       >
+        {/* bestämmer vilken kortsida som ska visas från kortet i props*/}
         <div className={"card" + (this.props.card.flipped ? " flipped" : "")}>
           <div className="face front">
             {this.cardBack}
@@ -39,9 +41,20 @@ class Card extends React.Component {
       </div>
     );
   }
+
+  // kallar på funktionen som hanterar klick på kortet.
   onClick(){
     this.props.onClick(this.props.card);
   }
 }
+
+Card.propTypes = {
+  gridSize: React.PropTypes.shape({
+    x: React.PropTypes.number.isRequired,
+    y: React.PropTypes.number.isRequired,
+  }),
+  onClick: React.PropTypes.func.isRequired,
+  card: React.PropTypes.object.isRequired,
+};
 
 module.exports = Card;

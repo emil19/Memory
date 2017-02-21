@@ -1,18 +1,22 @@
 var React = require('react');
 
+//errormeddelande som kommer upp i errorlistan
 class ErrorMessage extends React.Component {
-  constructor(props){
-    super(props);
-  }
   render(){
     return(
       <div className="error">
         <div className="text">
-          {this.props.error.message}
+          {
+            // skriver ut meddelandet
+            this.props.error.message
+          }
         </div>
         <div
           className="close"
-          onClick={() => this.props.removeError(this.key)}>
+          onClick={
+            // tar bort errormeddelandet när man klickar kryss
+            () => this.props.removeError(this.key)
+          }>
           ✖
         </div>
       </div>

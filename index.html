@@ -1,17 +1,28 @@
+<!--
+Detta är den enda riktiga html-filen i projektet, den inkluderar css- och
+javascriptfilernas rot (som sedan kommer inkludera alla andra css- och
+javascriptfiler)
+
+Den skapar även ett element där react kan påbörja sin rendering.
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>Memory Game</title>
+
+    <!-- länk till css, de okompilerade css-filerna ligger i scss mappen -->
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <!-- Div där react renderar sin kod, react koden finns i jsx mappen -->
+    <!-- Div där react renderar sin kod, react-koden finns i jsx mappen -->
     <div id="react"></div>
   </body>
 
   <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
+    // javascriptfilen som leder till alla andra. den ligger i jsx-mappen js
+    // är mappen den kompilerade filen hamnar i.
+    require('./js/react')
   </script>
 </html>

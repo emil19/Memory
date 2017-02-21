@@ -2,6 +2,7 @@ var React = require('react');
 var Markdown = require('./react-markdown');
 var BackButton = require("./react-backButton");
 
+// sidan där markdown-filerna visas med titel och tillbakaknapp
 class MarkdownPage extends React.Component {
   render() {
     return (
@@ -19,5 +20,11 @@ class MarkdownPage extends React.Component {
     );
   }
 }
+
+MarkdownPage.propTypes = {
+  filePath: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
+  back: React.PropTypes.func.isRequired,
+};
 
 module.exports = MarkdownPage;

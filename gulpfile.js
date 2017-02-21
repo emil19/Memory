@@ -1,15 +1,10 @@
-
 // kompilerar javascript och css filer innan programmet startas
-
-// ---
-// DEPENDENCIES
-// ---
+// körs med 'gulp' kommandot i kommandotolken
 
 var gulp = require('gulp'),
-sass = require('gulp-sass'),
-sourcemaps = require("gulp-sourcemaps"),
-babel = require("gulp-babel"),
-electron = require("electron");
+  sass = require('gulp-sass'),
+  sourcemaps = require("gulp-sourcemaps"),
+  babel = require("gulp-babel");
 
 // sass task
 gulp.task('sass', function() {

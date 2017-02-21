@@ -1,12 +1,10 @@
 var React = require('react');
+// react tillägg för att animera när ett element kommer eller tas bort.
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var ErrorMessage = require('./react-error');
 
 class ErrorList extends React.Component {
-  constructor(props){
-    super(props);
-  }
   render(){
     return(
       <ReactCSSTransitionGroup
@@ -14,7 +12,9 @@ class ErrorList extends React.Component {
         transitionName="error"
         transitionEnterTimeout={200}
         transitionLeaveTimeout={200}>
-        { this.props.errors.map(
+        {
+          // tar emot error array och skapar errormeddelande element som visas
+          this.props.errors.map(
           (error, i) =>
             <ErrorMessage
               error={error}

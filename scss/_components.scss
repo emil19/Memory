@@ -1,0 +1,96 @@
+.button{
+  display: inline-block;
+  background-color: $accent;
+  padding: 1rem;
+  color: $white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+
+  // &-tecknet utökar förälderns css-selector
+  &:hover{
+    // darken är en scss-funktion som genererar en mörkare färg baserat på
+    // värdet man ger.
+    background-color: darken($accent, 3);
+  }
+  &:active{
+    background-color: darken($accent, 6);
+  }
+  &.extended{
+    display: block;
+    margin-bottom: 1rem;
+  }
+  &.secondary{
+    background-color: $dark;
+
+    &:hover{
+      background-color: darken($dark, 3);
+    }
+    &:active{
+      background-color: darken($dark, 6);
+    }
+  }
+}
+
+.backButton {
+  display: block;
+  flex-grow: 0;
+  width: 1.25em;
+  height: 1.25em;
+
+  path {
+    fill: $accent;
+  }
+  &:hover path {
+    fill: darken($accent, 3);
+  }
+  &:active path {
+    fill: darken($accent, 6);
+  }
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  background-color: $dark;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  padding: 2rem;
+  border-bottom: $accent .5rem solid;
+
+  span {
+    flex-grow: 1;
+    color: $white;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    width: 1em;
+    height: 1em;
+    margin: 3px;
+    background-color: $white;
+    border-radius: 100%;
+    animation: loader 1.4s infinite ease-in-out both;
+  }
+
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+
+// animationen för laddingsvisaren
+@keyframes loader {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+  }
+}

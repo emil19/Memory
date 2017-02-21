@@ -1,9 +1,10 @@
 var React = require('react');
 
 class BackButton extends React.Component {
-  constructor(props){
-    super(props);
-  }
+
+  // renderar en backknapp som har en svg-bild i sig,
+  // svg bilden kan stylas som css om man lägger den direkt i html-koden
+
   render () {
     return (
       <a
@@ -23,5 +24,9 @@ class BackButton extends React.Component {
     );
   }
 }
+
+BackButton.propTypes = {
+  to: React.PropTypes.func.isRequired
+};
 
 module.exports = BackButton;

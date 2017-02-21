@@ -1,11 +1,14 @@
+// css för saker under spelets gång
+
 .gameContainer{
   flex-direction: row;
   display: flex;
   height: 100vh;
 }
+
 .gameMenuContainer{
   flex-grow: 1;
-  min-width: 16em;
+  min-width: 20em;
 }
 
 .cardContainer{

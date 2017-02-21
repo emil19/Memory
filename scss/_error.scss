@@ -1,33 +1,5 @@
-.pageContainer{
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-}
-
-.title{
-  align-items: center;
-  display: flex;
-  background-color: $dark;
-  width: 100%;
-  text-align: center;
-  margin: 0 0 2rem 0;
-  padding: 2rem;
-  border-bottom: $accent .5rem solid;
-
-  span {
-    flex-grow: 1;
-    color: $white;
-  }
-}
-
-.container-24 {
-  width: 24rem;
-  margin: 0 1rem;
-}
-.container-40 {
-  width: 40rem;
-  margin: 0 1rem;
-}
+// stilen på error meddelande, testa skriva någon sökterm som man inte får
+// resultat på eller koppla bort wifi för att testa error meddelanden
 
 .errorList {
   display: block;
@@ -78,7 +50,7 @@
   }
 }
 
-
+// skakanimationen till errors
 @keyframes shake {
   10%, 90% {
     transform: translate(-2px, 0);
