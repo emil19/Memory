@@ -142,8 +142,14 @@ class Game extends React.Component {
 
 Game.propTypes = {
   options: React.PropTypes.shape({
-    players: React.PropTypes.number.isRequired,
-    cards: React.PropTypes.number.isRequired,
+    players: React.PropTypes.oneOfType([
+      React.PropTypes.number.isRequired,
+      React.PropTypes.string.isRequired
+    ]),
+    cards: React.PropTypes.oneOfType([
+      React.PropTypes.number.isRequired,
+      React.PropTypes.string.isRequired
+    ]),
     images: React.PropTypes.arrayOf(
       React.PropTypes.string.isRequired
     )
