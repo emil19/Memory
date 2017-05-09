@@ -1,4 +1,5 @@
 var React = require('react');
+var path = require('path');
 
 // gör en instans samtidigt som jag inkluderar
 var FlickrRequest = new (require('./request'));
@@ -103,18 +104,13 @@ class MainMenu extends React.Component {
           </Button>
           <MarkdownButton
             onClick={this.props.markdownPage}
-            path="./md/howto.md"
+            path={path.join(__dirname, '..', 'md', 'howto.md')}
             text="How To Play"
           />
           <MarkdownButton
             onClick={this.props.markdownPage}
-            path="./md/info.md"
+            path={path.join(__dirname, '..', 'md', 'info.md')}
             text="Information"
-          />
-          <MarkdownButton
-            onClick={this.props.markdownPage}
-            path="./md/todo.md"
-            text="To Do"
           />
         </div>
       </div>
@@ -130,6 +126,12 @@ class MainMenu extends React.Component {
 
   // startar spelet
   startGame(){
+    // kräv minst 1 spelare
+    if (this.state.players < 1) {
+      this.addError({ message: 'Only positive players allowed.' });
+      return;
+    }
+
     // visar laddningsindikatorn genom att sätta loading state till true.
     this.stateSetter(true, 'loading');
 
